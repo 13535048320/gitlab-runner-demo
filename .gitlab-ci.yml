@@ -1,0 +1,54 @@
+# 在作业之前执行的脚本或命令
+before_script:
+  - source ~/.bashrc
+  
+# 在作业之后执行的脚本或命令 
+after_script:
+  - echo "build success"
+
+# 依赖的docker镜像
+image:
+  name: nginx:latest
+
+# 依赖的docker服务
+#services:
+
+# 定义工作场景，和场景顺序
+stages:
+  - build
+  - push
+  - deploy
+  
+# 定义任务，任务名字随意
+build_image:
+  # 定义所属场景,与stages相对于
+  stage: build
+  # 定义任务脚本
+  script: 
+    - mvn clean install
+    - docker build -t register.ptl-harbor.com/demo/test-prd:0.0.$CI_PIPELINE_ID .
+  # 指定runner，tags为runner标签
+  tags:
+    - node1
+  # 指定分支
+  only:
+    - master
+    # 配置定时触发
+    - schedules
+  # artifacts 配置的paths文件可以在gitlab服务器上下载
+  artifacts:
+    paths:
+      - target/*.jar
+    # 打包文件的压缩包重命名
+    name: test-prd-$CI_PIPELINE_ID
+    when: on_success
+    # 过期时间
+    expire_in: 1 days
+
+push_images:
+  stage: push
+  script:
+    - docker push register.ptl-harbor.com/demo/test-prd:0.0.$CI_PIPELINE_ID
+    - docker rmi register.ptl-harbor.com/demo/test-prd:0.0.$CI_PIPELINE_ID
+  tags:
+    - node1
