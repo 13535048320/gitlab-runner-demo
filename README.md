@@ -5,10 +5,11 @@ https://www.webq.top/doc/ci#a7
 ### 1.1 容器安装
 ```
 docker run -d --name gitlab-runner --restart always \
--v /srv/gitlab-runner/config:/etc/gitlab-runner \
+-v /data/gitlab-runner:/etc/gitlab-runner \
 -v /var/run/docker.sock:/var/run/docker.sock \
 gitlab/gitlab-runner:latest
 ```
+使用容器部署，可能有部分shell命令无法使用，例如mvn，需要另外构建安装maven的镜像
 
 ### 1.2 普通安装
 <b>下载命令</b>
