@@ -2,7 +2,44 @@
 参考文章：
 https://www.webq.top/doc/ci#a7
 ## 1.安装
-### 1.1 容器安装
+### 1.1 gitlab 服务器普通搭建方式
+<b>下载地址:https://mirrors.tuna.tsinghua.edu.cn/gitlab-ce/yum/el7</b>
+<b>下载RPM包，并安装，例子</b>
+```
+wget https://mirrors.tuna.tsinghua.edu.cn/gitlab-ce/yum/el7/gitlab-ce-12.2.1-ce.0.el7.x86_64.rpm
+rpm -i gitlab-ce-12.2.1-ce.0.el7.x86_64.rpm
+```
+<b>配置</b>
+```
+vi /etc/gitlab/gitlab.rb
+    external_url 'http://<IP>'
+```
+
+### 1.2 gitlab 服务器容器搭建方式
+<b>启动</b>
+```
+docker run -d \
+   -p 80:80 \
+   -p 443:443 \
+   -p 122:22 \
+   --name gitlab \
+   --restart unless-stopped \
+   -v /data/gitlab/config:/etc/gitlab \
+   -v /data/gitlab/logs:/var/log/gitlab \
+   -v /data/gitlab/data:/var/opt/gitlab \
+   gitlab/gitlab-ce:latest
+```
+<b>配置</b>
+```
+vi /data/gitlab/config/gitlab.rb
+    external_url 'http://<IP>'
+```
+<b>配置后重启</b>
+```
+docker restart gitlab
+```
+
+### 1.3 gitlab-runner容器安装方式
 ```
 docker run -d --name gitlab-runner --restart always \
 -v /data/gitlab-runner:/etc/gitlab-runner \
@@ -11,7 +48,7 @@ gitlab/gitlab-runner:latest
 ```
 使用容器部署，可能有部分shell命令无法使用，例如mvn，需要另外构建安装maven的镜像
 
-### 1.2 普通安装
+### 1.4 gitlab-runner普通安装
 <b>下载命令</b>
 ```
 sudo curl -L --output /usr/local/bin/gitlab-runner https://gitlab-runner-downloads.s3.amazonaws.com/latest/binaries/gitlab-runner-linux-amd64
