@@ -102,8 +102,8 @@ sudo gitlab-runner start
 
 ### 2.1 查看token
 
-![picture1](https://github.com/13535048320/gitlab-runner-demo/blob/master/images/%E5%9B%BE%E7%89%871.png)
-![picture2](https://github.com/13535048320/gitlab-runner-demo/blob/master/images/%E5%9B%BE%E7%89%872.png)
+![picture1](https://github.com/13535048320/gitlab-runner-demo/tree/master/images/%E5%9B%BE%E7%89%871.png)
+![picture2](https://github.com/13535048320/gitlab-runner-demo/tree/master/images/%E5%9B%BE%E7%89%872.png)
 
 ### 2.2 配置runner
 
@@ -121,18 +121,18 @@ docker exec -it gitlab-runner gitlab-runner register
 ```
 
 <b>根据2.1显示的输入</b>
-![picture3](https://github.com/13535048320/gitlab-runner-demo/blob/master/images/%E5%9B%BE%E7%89%873.png)
+![picture3](https://github.com/13535048320/gitlab-runner-demo/tree/master/images/%E5%9B%BE%E7%89%873.png)
 注意输入要使用的执行方式，可以直接使用shell，也可以使用docker和ssh但是需要其他配置
-![picture4](https://github.com/13535048320/gitlab-runner-demo/blob/master/images/%E5%9B%BE%E7%89%874.png)
+![picture4](https://github.com/13535048320/gitlab-runner-demo/tree/master/images/%E5%9B%BE%E7%89%874.png)
 
 配置完成后，等待一会儿，gitlab服务器页面会显示runner，绿色为正常状态
-![picture5](https://github.com/13535048320/gitlab-runner-demo/blob/master/images/%E5%9B%BE%E7%89%875.png)
+![picture5](https://github.com/13535048320/gitlab-runner-demo/tree/master/images/%E5%9B%BE%E7%89%875.png)
 
 ## 3.编写.gitlab-ci.yml文件
 
 ### 3.1项目结构
 
-![picture6](https://github.com/13535048320/gitlab-runner-demo/blob/master/images/%E5%9B%BE%E7%89%876.png)
+![picture6](https://github.com/13535048320/gitlab-runner-demo/tree/master/images/%E5%9B%BE%E7%89%876.png)
 
 ### 3.2.gitlab-ci.yml文件内容
 
@@ -193,14 +193,14 @@ push_images:
 
 ## 4.推送并构建
 
-![picture7](https://github.com/13535048320/gitlab-runner-demo/blob/master/images/%E5%9B%BE%E7%89%877.png)
+![picture7](https://github.com/13535048320/gitlab-runner-demo/tree/master/images/%E5%9B%BE%E7%89%877.png)
 
 ## 5.高级用法
 
 ### 5.1定时构建
 
-![picture8](https://github.com/13535048320/gitlab-runner-demo/blob/master/images/%E5%9B%BE%E7%89%878.png)
-![picture9](https://github.com/13535048320/gitlab-runner-demo/blob/master/images/%E5%9B%BE%E7%89%879.png)
+![picture8](https://github.com/13535048320/gitlab-runner-demo/tree/master/images/%E5%9B%BE%E7%89%878.png)
+![picture9](https://github.com/13535048320/gitlab-runner-demo/tree/master/images/%E5%9B%BE%E7%89%879.png)
 
 ```
   job:
